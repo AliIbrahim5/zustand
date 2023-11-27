@@ -3,20 +3,15 @@ import { Inter } from "next/font/google";
 import useStore, { count } from "../store/store";
 const inter = Inter({ subsets: ["latin"] });
 
-interface countNumber {
-  count: number;
-  theNumber: string;
-  setNumber: (newNumber: number) => void;
-  setString: (newState: string) => void;
-}
 export default function Home() {
-  const playerState = useStore((state) => state.playerState);
-  const setPlayerState = useStore((state) => state.setPlayerState);
-  const countState = count((state) => state.count);
-  const setNumber = count((state) => state.setNumber);
-  const theNumber = count((state) => state.theNumber);
-  const setString = count((state) => state.setString);
-  const currentCount = count((state) => state.count);
+  const { playerState, setPlayerState } = useStore((state) => state);
+  const {
+    count: countState,
+    setNumber,
+    theNumber,
+    setString,
+    count: currentCount,
+  } = count((state) => state);
 
   const handlePlayerDeath = () => {
     setPlayerState("مات");
